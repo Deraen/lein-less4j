@@ -17,7 +17,7 @@
                      (map (fn [x] [(.getPath x) (.toString (.relativize (.toURI file) (.toURI x)))]))))))
        (apply concat)))
 
-(def less4j-profile {:dependencies '[[deraen/less4clj "0.3.2"]
+(def less4j-profile {:dependencies '[[deraen/less4clj "0.3.3"]
                                      [watchtower "0.1.1"]]})
 
 ; From lein-cljsbuild
@@ -39,9 +39,10 @@
 (defn- run-compiler
   "Run the lesscss compiler."
   [project
-   {:keys [source-paths target-path source-map compression]
+   {:keys [source-paths target-path source-map compression verbosity]
     :or {source-map false
-         compression false}}
+         compression false
+         verbosity 1}}
    watch?]
   (let [project' (project/merge-profiles project [less4j-profile])
         main-files (vec (find-main-files source-paths))]
@@ -56,7 +57,8 @@
                       relative-path#
                       {:source-map ~source-map
                        :compression ~compression
-                       :source-paths ~source-paths})))]
+                       :source-paths ~source-paths
+                       :verbosity ~verbosity})))]
          (if ~watch?
            @(watchtower.core/watcher
              ~source-paths
