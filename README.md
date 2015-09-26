@@ -5,7 +5,7 @@ Leiningen task to compile Less.
 
 * Provides the `less4j` task
 * For each `.main.less` in source-dirs creates equivalent `.css` file.
-* Uses [Less4j](https://github.com/SomMeri/less4j) Java implementation of Less compiler
+* Uses [Less4j](https://github.com/SomMeri/less4j) Java implementation of Less compiler through [less4clj clojure wrapper](https://github.com/Deraen/less4clj)
 * For parallel [boot-clj](http://boot-clj.com/) task check [boot-less](https://github.com/Deraen/boot-less/)
 
 ## Usage
